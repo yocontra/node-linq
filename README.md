@@ -2,11 +2,11 @@
 
 <table>
 <tr> 
-<td>Package</td><td>APPNAME</td>
+<td>Package</td><td>node-linq</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>NOTHING HERE YET</td>
+<td>LINQ implementation for node</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -16,13 +16,72 @@
 
 ## Usage
 
+These functions can be chained.
+
 ```coffee-script
-NOTHING HERE YET
+.Where(fn)
+.Distinct()
+.Except(arr, [fn])
+.OfType(type)
+.Cast(type)
+.Select(fn)
+.SelectMany(fn) 
+.Reverse()
+.OrderBy(fn)
+.OrderByDescending(fn)
+
+.Concat(arr)
+.Intersect(arr, [fn])
 ```
 
-## Examples
+These functions return a value
 
-You can view further examples in the [example folder.](https://github.com/wearefractal/APPNAME/tree/master/examples)
+```coffee-script
+.Contains(val)
+.Any(fn)
+.All(fn)
+.Max()
+.Min()
+.Sum([fn])
+.Average([fn])
+
+.ElementAt(idx)
+.ElementAtOrDefault(idx, default)
+.First([fn])
+.FirstOrDefault(default, [fn])
+.Last([fn])
+.LastOrDefault(default, [fn])
+.Single([fn])
+.SingleOrDefault(d, [fn])
+.DefaultIfEmpty(d)
+
+.Count()
+.ToArray()
+```
+## Example
+
+```coffee-script
+LINQ = require 'node-linq'
+dogs = [
+  {name: 'Toby', age: 2, type: 'Yorkie'},
+  {name: 'Max', age: 3, type: 'Labrador'},
+  {name: 'Lil Billy', age: 4, type: 'Labrador'},
+  {name: 'Choni', age: 5, type: 'Poodle'}
+]
+puppies = [
+  {name: 'T-Bone', age: 1, type: 'Yorkie'},
+  {name: 'Lil Chili', age: 1, type: 'Labrador'}
+]
+
+arr = new LINQ(dogs)
+.Concat(puppies)
+.Where((dog) -> dog.type is 'Labrador')
+.OrderBy((dog) -> dog.age)
+.Select((dog) -> dog.name)
+.ToArray()
+
+# arr == [ 'Lil Chili', 'Max', 'Lil Billy' ]
+```
 
 ## LICENSE
 
