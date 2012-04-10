@@ -14,6 +14,8 @@
 </tr>
 </table>
 
+Got an idea for something cool? Open an issue!
+
 ## Usage
 
 These functions can be chained for synchronous and asynchronous queries
