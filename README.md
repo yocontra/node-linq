@@ -16,7 +16,7 @@
 
 ## Usage
 
-These functions can be chained for aynchronous and asynchronous queries
+These functions can be chained for synchronous and asynchronous queries
 
 ```coffee-script
 .Where(fn)
