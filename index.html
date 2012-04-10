@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>node-linq by wearefractal</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>node-linq</h1>
+        <p>LINQ for node</p>
+        <p class="view"><a href="https://github.com/wearefractal/node-linq">View the Project on GitHub <small>wearefractal/node-linq</small></a></p>
+        <ul>
+          <li><a href="https://github.com/wearefractal/node-linq/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wearefractal/node-linq/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wearefractal/node-linq">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Information</h2>
+
+<table>
+<tr>
+<td>Package</td>
+<td>node-linq</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>LINQ implementation for node</td>
+</tr>
+<tr>
+<td>Node Version</td>
+<td>&gt;= 0.4</td>
+</tr>
+</table><p>Got an idea for something cool? Open an issue!</p>
+
+<h2>Usage</h2>
+
+<p>These functions can be chained for synchronous and asynchronous queries</p>
+
+<div class="highlight">
+<pre><span class="p">.</span><span class="nx">Where</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Distinct</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">Except</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">OfType</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Cast</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Select</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">SelectMany</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> 
+<span class="p">.</span><span class="nx">Reverse</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">OrderBy</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">OrderByDescending</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+
+<span class="p">.</span><span class="nx">Concat</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Intersect</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">])</span>
+</pre>
+</div>
+
+
+<p>These functions return a value (for use at the end of a chain)</p>
+
+<div class="highlight">
+<pre><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Any</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Max</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">Min</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">Sum</span><span class="p">([</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">Average</span><span class="p">([</span><span class="nx">fn</span><span class="p">])</span>
+
+<span class="p">.</span><span class="nx">ElementAt</span><span class="p">(</span><span class="nx">idx</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">ElementAtOrDefault</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="nx">default</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">First</span><span class="p">([</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">FirstOrDefault</span><span class="p">(</span><span class="nx">default</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">Last</span><span class="p">([</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">LastOrDefault</span><span class="p">(</span><span class="nx">default</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">Single</span><span class="p">([</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">SingleOrDefault</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">DefaultIfEmpty</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span>
+
+<span class="p">.</span><span class="nx">Count</span><span class="p">()</span>
+</pre>
+</div>
+
+
+<h2>Examples</h2>
+
+<p>These suck. If you have more practical examples pull requests are appreciated.</p>
+
+<h3>Sorting .txt files by modify time</h3>
+
+<p>Synchronous (LINQ)</p>
+
+<div class="highlight">
+<pre><span class="p">{</span><span class="nx">LINQ</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'node-linq'</span>
+<span class="nv">fs = </span><span class="nx">require</span> <span class="s">'fs'</span>
+<span class="p">{</span><span class="nx">extname</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'path'</span>
+
+<span class="nv">files = </span><span class="p">[</span><span class="s">'test.txt'</span><span class="p">,</span> <span class="s">'choni.txt'</span><span class="p">,</span> <span class="s">'legacy.zip'</span><span class="p">,</span> <span class="s">'secrets.txt'</span><span class="p">,</span> <span class="s">'etc.rar'</span><span class="p">]</span>
+
+<span class="nv">arr = </span><span class="k">new</span> <span class="nx">LINQ</span><span class="p">(</span><span class="nx">files</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Where</span><span class="p">(</span><span class="nf">(file) -&gt;</span> <span class="nx">extname</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="o">is</span> <span class="s">'txt'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">OrderBy</span><span class="p">(</span><span class="nf">(file) -&gt;</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">lstatSync</span><span class="p">(</span><span class="nx">file</span><span class="p">).</span><span class="nx">mtime</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">ToArray</span><span class="p">()</span>
+
+<span class="c1"># arr == [ 'choni.txt',  'text.txt', 'secrets.txt']</span>
+</pre>
+</div>
+
+
+<p>Asynchronous (ALINQ)</p>
+
+<div class="highlight">
+<pre><span class="p">{</span><span class="nx">ALINQ</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'node-linq'</span>
+<span class="nv">fs = </span><span class="nx">require</span> <span class="s">'fs'</span>
+<span class="p">{</span><span class="nx">extname</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'path'</span>
+
+<span class="nv">files = </span><span class="p">[</span><span class="s">'test.txt'</span><span class="p">,</span> <span class="s">'choni.txt'</span><span class="p">,</span> <span class="s">'legacy.zip'</span><span class="p">,</span> <span class="s">'secrets.txt'</span><span class="p">,</span> <span class="s">'etc.rar'</span><span class="p">]</span>
+
+<span class="nv">q = </span><span class="k">new</span> <span class="nx">ALINQ</span> <span class="nx">files</span>
+
+<span class="nx">q</span><span class="p">.</span><span class="nx">Where</span> <span class="nf">(file, cb) -&gt;</span> 
+  <span class="nx">cb</span> <span class="nx">extname</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="o">is</span> <span class="s">'txt'</span>
+
+<span class="nx">q</span><span class="p">.</span><span class="nx">OrderBy</span> <span class="nf">(file, cb) -&gt;</span> 
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">lstat</span> <span class="nx">file</span><span class="p">,</span> <span class="nf">(err, stat) -&gt;</span>
+    <span class="nx">cb</span> <span class="nx">stat</span><span class="p">.</span><span class="nx">mtime</span>
+
+<span class="nx">q</span><span class="p">.</span><span class="nx">Execute</span> <span class="nf">(arr) -&gt;</span>
+  <span class="c1"># arr == [ choni.txt',  'text.txt', 'secrets.txt']</span>
+</pre>
+</div>
+
+
+<h3>Sorting users by registration date</h3>
+
+<p>Synchronous (LINQ)</p>
+
+<div class="highlight">
+<pre><span class="p">{</span><span class="nx">LINQ</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'node-linq'</span>
+
+<span class="nv">users = </span><span class="p">[</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Bob'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'12/27/1993'</span><span class="p">)},</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Tom'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'12/25/1993'</span><span class="p">)},</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Bill'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'11/10/1992'</span><span class="p">)},</span>
+<span class="p">]</span>
+<span class="nv">arr = </span><span class="k">new</span> <span class="nx">LINQ</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">OrderBy</span><span class="p">(</span><span class="nf">(user) -&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">joined</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">Select</span><span class="p">(</span><span class="nf">(user) -&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">ToArray</span><span class="p">()</span>
+
+<span class="c1"># arr == ['Bill', 'Tom', 'Bob']</span>
+</pre>
+</div>
+
+
+<p>Asynchronous (ALINQ)</p>
+
+<div class="highlight">
+<pre><span class="p">{</span><span class="nx">ALINQ</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'node-linq'</span>
+
+<span class="nv">users = </span><span class="p">[</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Bob'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'12/27/1993'</span><span class="p">)},</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Tom'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'12/25/1993'</span><span class="p">)},</span>
+  <span class="p">{</span><span class="nv">name: </span><span class="s">'Bill'</span><span class="p">,</span> <span class="nv">joined: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s">'11/10/1992'</span><span class="p">)},</span>
+<span class="p">]</span>
+<span class="nv">q = </span><span class="k">new</span> <span class="nx">ALINQ</span> <span class="nx">users</span>
+<span class="nx">q</span><span class="p">.</span><span class="nx">OrderBy</span> <span class="nf">(user, cb) -&gt;</span>  <span class="nx">cb</span> <span class="nx">user</span><span class="p">.</span><span class="nx">joined</span>
+<span class="nx">q</span><span class="p">.</span><span class="nx">Select</span> <span class="nf">(user, cb) -&gt;</span> <span class="nx">cb</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span>
+
+<span class="nx">q</span><span class="p">.</span><span class="nx">Execute</span> <span class="nf">(arr) -&gt;</span>
+  <span class="c1"># arr == ['Bill', 'Tom', 'Bob']</span>
+</pre>
+</div>
+
+
+<h2>LICENSE</h2>
+
+<p>(MIT License)</p>
+
+<p>Copyright (c) 2012 Fractal <a href="mailto:contact@wearefractal.com">contact@wearefractal.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wearefractal">wearefractal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
