@@ -58,7 +58,7 @@ These functions return a value
 
 .Count()
 ```
-## Example
+## Examples
 
 These suck. If you have more practical examples pull requests are appreciated.
 
