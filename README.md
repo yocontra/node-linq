@@ -16,7 +16,7 @@
 
 ## Usage
 
-These functions can be chained
+These functions can be chained for aynchronous and asynchronous queries
 
 ```coffee-script
 .Where(fn)
@@ -35,7 +35,7 @@ These functions can be chained
 .Intersect(arr, [fn])
 ```
 
-These functions return a value
+These functions return a value (for use at the end of a chain)
 
 ```coffee-script
 .Contains(val)
