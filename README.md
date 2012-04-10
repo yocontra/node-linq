@@ -16,13 +16,14 @@
 
 ## Usage
 
-These functions can be chained.
+These functions can be chained
 
 ```coffee-script
 .Where(fn)
 .Distinct()
 .Except(arr, [fn])
 .OfType(type)
+.Map(fn)
 .Cast(type)
 .Select(fn)
 .SelectMany(fn) 
@@ -56,31 +57,86 @@ These functions return a value
 .DefaultIfEmpty(d)
 
 .Count()
-.ToArray()
 ```
 ## Example
 
-```coffee-script
-LINQ = require 'node-linq'
-dogs = [
-  {name: 'Toby', age: 2, type: 'Yorkie'},
-  {name: 'Max', age: 3, type: 'Labrador'},
-  {name: 'Lil Billy', age: 4, type: 'Labrador'},
-  {name: 'Choni', age: 5, type: 'Poodle'}
-]
-puppies = [
-  {name: 'T-Bone', age: 1, type: 'Yorkie'},
-  {name: 'Lil Chili', age: 1, type: 'Labrador'}
-]
+These suck. If you have more practical examples pull requests are appreciated.
 
-arr = new LINQ(dogs)
-.Concat(puppies)
-.Where((dog) -> dog.type is 'Labrador')
-.OrderBy((dog) -> dog.age)
-.Select((dog) -> dog.name)
+### Sorting .txt files by modify time
+Synchronous (LINQ)
+
+```coffee-script
+{LINQ} = require 'node-linq'
+fs = require 'fs'
+{extname} = require 'path'
+
+files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar']
+
+arr = new LINQ(files)
+.Where((file) -> extname(file) is 'txt')
+.OrderBy((file) -> fs.lstatSync(file).mtime)
 .ToArray()
 
-# arr == [ 'Lil Chili', 'Max', 'Lil Billy' ]
+# arr == [ 'choni.txt',  'text.txt', 'secrets.txt']
+```
+
+Asynchronous (ALINQ)
+
+```coffee-script
+{ALINQ} = require 'node-linq'
+fs = require 'fs'
+{extname} = require 'path'
+
+files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar']
+
+q = new ALINQ files
+
+q.Where (file, cb) -> 
+  cb extname(file) is 'txt'
+
+q.OrderBy (file, cb) -> 
+  fs.lstat file, (err, stat) ->
+    cb stat.mtime
+
+q.Execute (arr) ->
+  # arr == [ choni.txt',  'text.txt', 'secrets.txt']
+```
+
+### Sorting users by registration date
+Synchronous (LINQ)
+
+```coffee-script
+{LINQ} = require 'node-linq'
+
+users = [
+  {name: 'Bob', joined: new Date('12/27/1993')},
+  {name: 'Tom', joined: new Date('12/25/1993')},
+  {name: 'Bill', joined: new Date('11/10/1992')},
+]
+arr = new LINQ(users)
+.OrderBy((user) -> user.joined)
+.Select((user) -> user.name)
+.ToArray()
+
+# arr == ['Bill', 'Tom', 'Bob']
+```
+
+Asynchronous (ALINQ)
+
+```coffee-script
+{ALINQ} = require 'node-linq'
+
+users = [
+  {name: 'Bob', joined: new Date('12/27/1993')},
+  {name: 'Tom', joined: new Date('12/25/1993')},
+  {name: 'Bill', joined: new Date('11/10/1992')},
+]
+q = new ALINQ users
+q.OrderBy (user, cb) ->  cb user.joined
+q.Select (user, cb) -> cb user.name
+
+q.Execute (arr) ->
+  # arr == ['Bill', 'Tom', 'Bob']
 ```
 
 ## LICENSE
