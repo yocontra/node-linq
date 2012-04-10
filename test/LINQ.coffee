@@ -1,4 +1,4 @@
-LINQ = require '../'
+{LINQ} = require '../'
 should = require 'should'
 require 'mocha'
 

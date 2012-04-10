@@ -1,14 +1,15 @@
 {
    "name":"node-linq",
    "description":"LINQ implementation",
-   "version":"0.0.1",
+   "version":"0.0.2",
    "homepage":"http://github.com/wearefractal/node-linq",
    "repository":"git://github.com/wearefractal/node-linq.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
    
    "dependencies":{
-      "coffee-script":"*"
+      "coffee-script":"*",
+      "async":"*"
    },
    "devDependencies":{
       "mocha":"*",
