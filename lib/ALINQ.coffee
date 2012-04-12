@@ -137,12 +137,14 @@ class ALINQ
       cb items.concat arr.items or arr
   Intersect: (arr, fn) ->
     @addTo (items, cb) ->
-      fn ?= (item, idx, item2, idx2) -> item is item2
+      fn ?= (item, item2) -> item is item2
       arr = arr.items or arr
       out = []
-      for item, idx in items
-        for item2, idx2 in arr
-          out.push item if fn(item, idx, item2, idx2) is true
-      cb out
+      check = (item, cb) ->
+        check2 = (item2, cb) ->
+          out.push item if fn(item, item2) is true
+          cb()
+        async.map arr, check2, cb
+      async.map items, check, -> cb out
 
 module.exports = ALINQ
