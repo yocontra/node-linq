@@ -12,6 +12,10 @@
 <td>Node Version</td>
 <td>>= 0.4</td>
 </tr>
+<tr>
+<td>Build Status</td>
+<td>![status](https://secure.travis-ci.org/wearefractal/node-linq.png?branch=master)/td>
+</tr>
 </table>
 
 Got an idea for something cool? Open an issue!
