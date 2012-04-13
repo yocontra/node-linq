@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>Build Status</td>
-<td>![status](https://secure.travis-ci.org/wearefractal/node-linq.png?branch=master)/td>
+<td>![status](https://secure.travis-ci.org/wearefractal/node-linq.png?branch=master)</td>
 </tr>
 </table>
 
