@@ -189,6 +189,17 @@ describe 'ordering', ->
       expected = new LINQ [{name: "Todd"}, {name: "Amanda"}]
       l.OrderByDescending((item) -> item.name).should.eql expected
       done()
+  describe 'GroupBy()', ->
+    it 'should return ["Amanda", "Todd"]', (done) ->
+      l = new LINQ [{name: "Todd"}, {name: "Amanda"}, {name: "Alan"}]
+      expected = 
+        T: [ name: 'Todd' ]
+        A: [
+          {name: 'Amanda'}
+          {name: 'Alan'}
+        ]
+      l.GroupBy((item) -> item.name[0]).should.eql expected
+      done()
 
 describe 'conditions', ->
   describe 'Contains()', ->
@@ -200,6 +211,16 @@ describe 'conditions', ->
     it 'should return false', (done) ->
       l = new LINQ [1, 2, 3]
       l.Contains(4).should.equal false
+      done()
+  describe 'ContainsAll()', ->
+    it 'should return true', (done) ->
+      l = new LINQ [1, 2, 3]
+      l.ContainsAll([1, 2, 3]).should.equal true
+      done()
+  describe 'ContainsAll()', ->
+    it 'should return false', (done) ->
+      l = new LINQ [1, 2, 3]
+      l.ContainsAll([1, 2, 3, 4]).should.equal false
       done()
   describe 'Any()', ->
     it 'should return true', (done) ->

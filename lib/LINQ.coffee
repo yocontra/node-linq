@@ -1,6 +1,6 @@
 util = require './util'
-# TODO: implement IEqualityComparer
 # TODO: http://msdn.microsoft.com/en-us/library/bb341635.aspx
+# TODO: allow strings instead of fns (use f lib parser)
 
 class LINQ
   constructor: (@items) ->
@@ -44,6 +44,7 @@ class LINQ
   Select: (fn) -> new LINQ (fn(item) for item in @items)
   SelectMany: (fn) ->
     temp = []
+    # TODO: Throw err if res of fn isnt arr?
     temp = temp.concat fn(item) for item in @items
     new LINQ temp
 
@@ -74,8 +75,15 @@ class LINQ
       return 1 if x > y
       return 0
 
+  GroupBy: (fn) ->
+    out = {}
+    @items.forEach (val, idx) -> (out[fn(val, idx)]?=[]).push val
+    return out
+
   # Conditions
-  Contains: (val, fn) -> val in @items
+  Contains: (val) -> val in @items
+  ContainsAll: (arr) -> new LINQ(arr).All (item) => item in @items
+
   Any: (fn) ->
     return true for item, idx in @items when fn(item) is true
     return false

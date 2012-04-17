@@ -4,6 +4,7 @@ async = require 'async'
 # TODO: Break out every fn so they can be reused within others - DRY
 # Example: Using Map within SelectMany without inducing queue side-effects
 # Sum() within Average() etc.
+# TODO: GroupBy, ContainsAll
 class ALINQ
   constructor: (@items) ->
     throw 'ArgumentNullException' unless @items?
