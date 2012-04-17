@@ -1,3 +1,5 @@
+![status](https://secure.travis-ci.org/wearefractal/node-linq.png?branch=master)
+
 ## Information
 
 <table>
