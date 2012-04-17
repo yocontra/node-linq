@@ -34,6 +34,7 @@ These functions can be chained for synchronous and asynchronous queries
 .Reverse()
 .OrderBy(fn)
 .OrderByDescending(fn)
+.GroupBy(fn)
 
 .Concat(arr)
 .Intersect(arr, [fn])
@@ -43,6 +44,7 @@ These functions return a value (for use at the end of a chain)
 
 ```coffee-script
 .Contains(val)
+.ContainsAll(arr)
 .Any(fn)
 .All(fn)
 .Max()
