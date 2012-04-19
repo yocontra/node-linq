@@ -5,13 +5,13 @@
    "homepage":"http://github.com/wearefractal/node-linq",
    "repository":"git://github.com/wearefractal/node-linq.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-   "main":"./index.js",
+   "main":"./js/main"
    
    "dependencies":{
-      "coffee-script":"*",
       "async":"*"
    },
    "devDependencies":{
+      "coffee-script":"*",
       "mocha":"*",
       "should":"*"
    },
@@ -19,6 +19,8 @@
       "node":">= 0.4.0"
    },
    "scripts":{
+      "prepublish": "coffee -o js -c lib/",
+      "postpublish": "rm -rf ./js",
       "test":"mocha --compilers coffee:coffee-script"
     },
    "licenses":[
