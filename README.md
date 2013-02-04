@@ -68,9 +68,23 @@ These functions return a value (for use at the end of a chain)
 
 These suck. If you have more practical examples pull requests are appreciated.
 
-### Sorting .txt files by modify time
+### Sorting .txt files alphabetically by name
 Synchronous (LINQ)
 
+####Javascript:
+```javascript
+var LINQ = require("node-linq").LINQ;
+
+var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
+var arr = new LINQ(files)
+  .Where(function(file) { return file.match('.txt$')=='.txt'; })
+  .OrderBy(function(file) { return file;})
+  .ToArray();
+
+//arr is now [ 'choni.txt',  'secrets.txt', 'text.txt' ]
+```
+
+####CoffeeScript:
 ```coffee-script
 {LINQ} = require 'node-linq'
 fs = require 'fs'
@@ -88,6 +102,22 @@ arr = new LINQ(files)
 
 Asynchronous (ALINQ)
 
+####Javascript:
+```javascript
+var ALINQ = require("node-linq").ALINQ
+
+var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
+
+var q = new ALINQ(files);
+q.Where(function(file,cb) { cb(file.match('.txt$')=='.txt'); });
+q.OrderBy(function(file, cb) {  cb(file);});
+//ToArray is not needed in this case
+				
+q.Execute(function(arr) {
+//arr is now [ 'choni.txt',  'secrets.txt', 'text.txt' ]
+}
+```
+####CoffeeScript:
 ```coffee-script
 {ALINQ} = require 'node-linq'
 fs = require 'fs'
@@ -108,9 +138,27 @@ q.Execute (arr) ->
   # arr == [ choni.txt',  'text.txt', 'secrets.txt']
 ```
 
-### Sorting users by registration date
+### Sorting users by registration date and then only returning the name
 Synchronous (LINQ)
 
+####Javascript:
+```javascript
+var LINQ = require("node-linq").LINQ;
+
+var users = [
+	{name: 'Bob', joined: new Date('12/27/1993')},
+	{name: 'Tom', joined: new Date('12/25/1993')},
+	{name: 'Bill', joined: new Date('11/10/1992')},
+];
+
+var arr = new LINQ(users)
+	.OrderBy(function(user) {return user.joined;})
+	.Select(function(user) {return user.name;})
+	.ToArray();
+  
+//arr is now [ 'Bill','Tom','Bob' ]
+```
+####CoffeeScript:
 ```coffee-script
 {LINQ} = require 'node-linq'
 
@@ -129,6 +177,28 @@ arr = new LINQ(users)
 
 Asynchronous (ALINQ)
 
+####Javascript:
+```javascript
+var ALINQ = require("node-linq").ALINQ
+
+var users = [
+	{name: 'Bob', joined: new Date('12/27/1993')},
+	{name: 'Tom', joined: new Date('12/25/1993')},
+	{name: 'Bill', joined: new Date('11/10/1992')},
+];
+
+var q = new ALINQ(users);
+q.OrderBy(function(user, cb) {  cb(user.joined);});
+q.Select(function(user, cb) { cb(user.name); });
+//ToArray is not needed here
+			
+q.Execute(function(arr) {
+//arr is now [ 'Bill','Tom','Bob' ]
+}
+
+```
+
+####CoffeeScript:
 ```coffee-script
 {ALINQ} = require 'node-linq'
 
