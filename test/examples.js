@@ -1,5 +1,6 @@
 var assert = require("assert"),
-	LINQ = require("../").LINQ;
+	LINQ = require("../").LINQ,
+	ALINQ = require("../").ALINQ;
 
 
 describe('Synchronous (LINQ)', function(){
