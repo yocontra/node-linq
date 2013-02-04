@@ -74,10 +74,10 @@ Synchronous (LINQ)
 ####Javascript:
 ```javascript
 var LINQ = require('node-linq').LINQ;
-var fs = require('fs');
+var path = require('path');
 var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
 var arr = new LINQ(files)
-  .Where(function(file) { return extname(file) === 'txt'; })
+  .Where(function(file) { return path.extname(file) === 'txt'; })
   .OrderBy(function(file) { return file;})
   .ToArray();
 
@@ -87,7 +87,6 @@ var arr = new LINQ(files)
 ####CoffeeScript:
 ```coffee-script
 {LINQ} = require 'node-linq'
-fs = require 'fs'
 {extname} = require 'path'
 
 files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar']
