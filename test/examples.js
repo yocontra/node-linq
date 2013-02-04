@@ -36,3 +36,47 @@ describe('Synchronous (LINQ)', function(){
 	});
 });
 
+describe('Asynchronous (ALINQ)', function(){ 
+	it('Simple Where, OrderBy ', function(done){
+			
+		var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
+
+		var q = new ALINQ(files);
+		q.Where(function(file,cb) { cb(file.match('.txt$')=='.txt'); });
+		q.OrderBy(function(file, cb) {  cb(file);});
+						
+		q.Execute(function(arr) {
+			
+			assert.equal(3, arr.length, "There should be the correct number of items in the final array.");
+			assert.equal('choni.txt', arr[0], "The first item must be the alphabetically sorted correctly.");
+			assert.equal('secrets.txt', arr[1], "The second item must be the alphabetically sorted correctly.");
+			assert.equal('test.txt', arr[2], "The third item must be the alphabetically sorted correctly.");
+			
+			done();
+			
+		});
+		
+	});
+	it('Simple OrderBy, Select and ToArray', function(done) {
+		var users = [
+			{name: 'Bob', joined: new Date('12/27/1993')},
+			{name: 'Tom', joined: new Date('12/25/1993')},
+			{name: 'Bill', joined: new Date('11/10/1992')},
+		];
+		
+		var q = new ALINQ(users);
+		q.OrderBy(function(user, cb) {  cb(user.joined);});
+		q.Select(function(user, cb) { cb(user.name); });
+						
+		q.Execute(function(arr) {
+			
+			assert.equal(3, arr.length,  "There should be the correct number of items in the final array.");
+			assert.equal('Bill', arr[0], "The first item must be the alphabetically sorted correctly.");
+			assert.equal('Tom', arr[1], "The second item must be the alphabetically sorted correctly.");
+			assert.equal('Bob', arr[2], "The third item must be the alphabetically sorted correctly.");
+			
+			done();
+			
+		});
+	});
+});

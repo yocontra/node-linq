@@ -101,6 +101,22 @@ arr = new LINQ(files)
 ```
 
 Asynchronous (ALINQ)
+
+####Javascript:
+```javascript
+var ALINQ = require("node-linq").ALINQ
+
+var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
+
+var q = new ALINQ(files);
+q.Where(function(file,cb) { cb(file.match('.txt$')=='.txt'); });
+q.OrderBy(function(file, cb) {  cb(file);});
+//ToArray is not needed in this case
+				
+q.Execute(function(arr) {
+//arr is now [ 'choni.txt',  'secrets.txt', 'text.txt' ]
+}
+```
 ####CoffeeScript:
 ```coffee-script
 {ALINQ} = require 'node-linq'
@@ -160,6 +176,27 @@ arr = new LINQ(users)
 ```
 
 Asynchronous (ALINQ)
+
+####Javascript:
+```javascript
+var ALINQ = require("node-linq").ALINQ
+
+var users = [
+	{name: 'Bob', joined: new Date('12/27/1993')},
+	{name: 'Tom', joined: new Date('12/25/1993')},
+	{name: 'Bill', joined: new Date('11/10/1992')},
+];
+
+var q = new ALINQ(users);
+q.OrderBy(function(user, cb) {  cb(user.joined);});
+q.Select(function(user, cb) { cb(user.name); });
+//ToArray is not needed here
+			
+q.Execute(function(arr) {
+//arr is now [ 'Bill','Tom','Bob' ]
+}
+
+```
 
 ####CoffeeScript:
 ```coffee-script
