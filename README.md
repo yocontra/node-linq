@@ -73,11 +73,11 @@ Synchronous (LINQ)
 
 ####Javascript:
 ```javascript
-var LINQ = require("node-linq").LINQ;
-
+var LINQ = require('node-linq').LINQ;
+var fs = require('fs');
 var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
 var arr = new LINQ(files)
-  .Where(function(file) { return file.match('.txt$')=='.txt'; })
+  .Where(function(file) { return extname(file) === 'txt'; })
   .OrderBy(function(file) { return file;})
   .ToArray();
 
@@ -94,10 +94,10 @@ files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar']
 
 arr = new LINQ(files)
 .Where((file) -> extname(file) is 'txt')
-.OrderBy((file) -> fs.lstatSync(file).mtime)
+.OrderBy((file) -> file)
 .ToArray()
 
-# arr == [ 'choni.txt',  'text.txt', 'secrets.txt']
+# arr ==  [ 'choni.txt',  'secrets.txt', 'text.txt' ]
 ```
 
 Asynchronous (ALINQ)
