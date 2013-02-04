@@ -1,7 +1,6 @@
 var assert = require("assert"),
-	LINQ = require("../").LINQ,
-	ALINQ = require("../").ALINQ,
-	path = require("path");
+	LINQ = require("../").LINQ;
+
 
 describe('Synchronous (LINQ)', function(){
 	it('Simple Where, OrderBy and ToArray', function(){
