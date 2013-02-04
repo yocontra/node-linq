@@ -37,3 +37,24 @@ describe('Synchronous (LINQ)', function(){
 	});
 });
 
+describe('Asynchronous (ALINQ)', function(){ 
+	it('Simple Where, OrderBy and ToArray', function(done){
+		var files = ['test.txt', 'choni.txt', 'legacy.zip', 'secrets.txt', 'etc.rar'];
+
+		var q = new ALINQ(files);
+		q.Where(function(file) { return file.match('.txt$')=='.txt'; })
+		q.OrderBy(function(file) { return file;})
+				
+		var arr = [];
+				
+		q.Execute(arr, function() {	
+			assert.equal(3, arr.length, "There should be the correct number of items in the final array.");
+			assert.equal('choni.txt', arr[0], "The first item must be the alphabetically sorted correctly.");
+			assert.equal('secrets.txt', arr[1], "The second item must be the alphabetically sorted correctly.");
+			assert.equal('test.txt', arr[2], "The third item must be the alphabetically sorted correctly.");
+			
+			done();
+		});
+		
+	});
+});
