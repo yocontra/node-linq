@@ -25,7 +25,7 @@ These functions can be chained for synchronous and asynchronous queries
 ```coffee-script
 .Where(fn)
 .Distinct()
-.Except(arr, [fn])
+.Except(arr)
 .OfType(type)
 .Map(fn)
 .Cast(type)
