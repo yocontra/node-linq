@@ -10,6 +10,8 @@ class LINQ
   ToArray: -> @items
   GetTemporary: -> (item for item in @items)
 
+  identity = (item) -> (item)
+
   # Indexes
   Count: (fn) -> (if fn then @Where(fn) else @).items.length
 
@@ -37,7 +39,7 @@ class LINQ
   # Selects
   Where: (fn) -> new LINQ (item for item, idx in @items when fn(item) is true)
   Distinct: -> new LINQ (item for item in @items when !(item in _results))
-  Except: (arr) -> @Where (item) -> !(item in arr)
+  Except: (arr, fn = identity) -> @Where (item) -> !(fn(item) in (fn(item) for item in arr))
   OfType: (type) -> @Where (item) -> typeof item is type
   Cast: (type) -> new LINQ ((if util.isFunction(type) then type(item) else new type(item)) for item in @items)
   Map: (fn) -> new LINQ (fn(item) for item in @items)

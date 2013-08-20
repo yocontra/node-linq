@@ -109,6 +109,13 @@ describe 'selects', ->
       expected = new LINQ [6]
       l.Except(except).should.eql expected
       done()
+    it 'should return [{name:"Todd"}]', (done) ->
+      comparer = (item) -> (item.name)
+      except = [{name:"Rick"}, {name: "John"}]
+      l = new LINQ [{name:"Todd"}, {name:"Rick"}]
+      expected = new LINQ [{name:"Todd"}]
+      l.Except(except, comparer).should.eql expected
+      done()
 
   describe 'OfType()', ->
     it 'should return [6]', (done) ->
