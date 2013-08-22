@@ -126,6 +126,14 @@ describe 'selects', ->
         val.should.eql [6]
         done()
 
+    it 'should return [6] with selector', (done) ->
+      except = [1, 2, 3, 4, 5]
+      l = new ALINQ [1, 2, 3, 4, 5, 6]
+      sel = (i) -> i
+      l.Except(except, sel).Execute (val) ->
+        val.should.eql [6]
+        done()
+
   describe 'OfType()', ->
     it 'should return [6]', (done) ->
       l = new ALINQ ['str', {}, null, 6]

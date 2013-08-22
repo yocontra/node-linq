@@ -18,6 +18,8 @@
 
 Got an idea for something cool? Open an issue!
 
+This library has not been tested or optimized for performance.
+
 ## Usage
 
 These functions can be chained for synchronous and asynchronous queries

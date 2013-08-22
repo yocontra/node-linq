@@ -110,6 +110,14 @@ describe 'selects', ->
       l.Except(except).should.eql expected
       done()
 
+    it 'should return [6] with selector', (done) ->
+      except = [1, 2, 3, 4, 5]
+      l = new LINQ [1, 2, 3, 4, 5, 6]
+      expected = new LINQ [6]
+      sel = (i) -> i
+      l.Except(except, sel).should.eql expected
+      done()
+
   describe 'OfType()', ->
     it 'should return [6]', (done) ->
       l = new LINQ ['str', {}, null, 6]

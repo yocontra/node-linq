@@ -5,6 +5,9 @@ async = require 'async'
 # Example: Using Map within SelectMany without inducing queue side-effects
 # Sum() within Average() etc.
 # TODO: GroupBy, ContainsAll
+
+defSel = (item) -> return item
+
 class ALINQ
   constructor: (@items) ->
     throw 'ArgumentNullException' unless @items?
@@ -69,7 +72,7 @@ class ALINQ
         temp.push item
         cb true
 
-  Except: (arr) -> @Where (item, cb) -> cb !(item in arr)
+  Except: (arr, fn=defSel) -> @Where (item, cb) -> cb !(fn(item) in arr)
   OfType: (type) -> @Where (item, cb) -> cb typeof item is type
   Map: (fn) ->
     @addTo (items, cb) ->
