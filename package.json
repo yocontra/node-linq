@@ -1,30 +1,29 @@
 {
-   "name":"node-linq",
-   "description":"LINQ implementation",
-   "version":"0.0.3",
-   "homepage":"http://github.com/wearefractal/node-linq",
-   "repository":"git://github.com/wearefractal/node-linq.git",
-   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-   "main":"./index.js",
-   
-   "dependencies":{
-      "coffee-script":"*",
-      "async":"*"
-   },
-   "devDependencies":{
-      "mocha":"*",
-      "should":"*"
-   },
-   "engines":{
-      "node":">= 0.4.0"
-   },
-   "scripts":{
-      "test":"mocha --compilers coffee:coffee-script"
-    },
-   "licenses":[
-      {
-         "type":"MIT",
-         "url":"http://github.com/wearefractal/node-linq/raw/master/LICENSE"
-      }
-   ]
+  "name": "node-linq",
+  "description": "LINQ implementation",
+  "version": "0.0.4",
+  "homepage": "http://github.com/wearefractal/node-linq",
+  "repository": "git://github.com/wearefractal/node-linq.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "dependencies": {
+    "async": "^0.9.0",
+    "coffee-script": "^1.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/wearefractal/node-linq/raw/master/LICENSE"
+    }
+  ]
 }
